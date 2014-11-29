@@ -35,14 +35,14 @@ ENV PHP_UPLOAD_MAX_FILESIZE 10M
 ENV PHP_POST_MAX_SIZE 10M
 
 # Install phpMyAdmin
-RUN mysqld & \
-	service apache2 start; \
-	sleep 5; \
-	printf y\\n\\n\\n1\\n | apt-get install -y phpmyadmin; \
-	sleep 15; \
-	mysqladmin -u root shutdown
+#RUN mysqld & \
+#	service apache2 start; \
+#	sleep 5; \
+#	printf y\\n\\n\\n1\\n | apt-get install -y phpmyadmin; \
+#	sleep 15; \
+#	mysqladmin -u root shutdown
 
-RUN sed -i "s#// \$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#g" /etc/phpmyadmin/config.inc.php
+#RUN sed -i "s#// \$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#g" /etc/phpmyadmin/config.inc.php
 
 # Add volumes for MySQL 
 VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
