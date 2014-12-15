@@ -79,7 +79,8 @@ Listen 443
 	SetEnvIf x-forwarded-proto https HTTPS=on
 	
         SSLEngine on
-        SSLCertificateFile /var/ssl/site.cert
+        SSLCertificateFile /var/ssl/site.crt
         SSLCertificateKeyFile /var/ssl/site.key
+        SSLCertificateChainFile /var/ssl/ca.pem
 
 </VirtualHost>
