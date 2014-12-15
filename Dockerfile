@@ -24,6 +24,7 @@ RUN chmod 755 /*.sh
 
 # config to enable .htaccess
 ADD apache_default /etc/apache2/sites-available/000-default.conf
+ADD apache_config /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 RUN a2enmod ssl
 
