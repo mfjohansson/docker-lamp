@@ -4,7 +4,10 @@ MAINTAINER Magnus Johansson <ao62x@notsharingmy.info>
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
-  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt
+  apt-get -y install \
+  supervisor git apache2=2.4.7-1ubuntu4.1 libapache2-mod-php5 \
+  mysql-server=5.5.40-0ubuntu0.14.04.1 \
+  php5-mysql pwgen php-apc php5-mcrypt
 
 # Add image configuration and scripts
 ADD start-apache2.sh /start-apache2.sh
@@ -23,13 +26,13 @@ ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
 RUN chmod 755 /*.sh
 
 # config to enable .htaccess
-ADD apache_default /etc/apache2/sites-available/000-default.conf
-ADD apache_config /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 RUN a2enmod ssl
 
+# Enable SSL site
+ADD apache2_2.4.7-1ubuntu4.1/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
+
 # Configure /app folder with sample app
-RUN git clone https://github.com/fermayo/hello-world-lamp.git /app
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
 #Enviornment variables to configure php

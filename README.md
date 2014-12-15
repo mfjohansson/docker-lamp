@@ -34,7 +34,7 @@ create a new `Dockerfile` in an empty folder with the following contents:
 
 	FROM mfjohansson/lamp:latest
 	RUN rm -fr /app && git clone https://github.com/username/customapp.git /app
-	EXPOSE 80 3306
+	EXPOSE 80 443 3306
 	CMD ["/run.sh"]
 
 replacing `https://github.com/username/customapp.git` with your application's GIT repository.
@@ -79,7 +79,7 @@ You will see an output like the following:
 	========================================================================
 	You can now connect to this MySQL Server using:
 
-	    mysql -uadmin -p47nnf4FweaKu -h<host> -P<port>
+	    mysql -uadmin -p 47nnf4FweaKu -h<host> -P<port>
 
 	Please remember to change the above password as soon as possible!
 	MySQL user 'root' has no password but only allows local connections
@@ -89,7 +89,7 @@ In this case, `47nnf4FweaKu` is the password allocated to the `admin` user.
 
 You can then connect to MySQL:
 
-	 mysql -uadmin -p47nnf4FweaKu
+	 mysql -uadmin -p 47nnf4FweaKu
 
 Remember that the `root` user does not allow connections from outside the container - 
 you should use this `admin` user instead!
@@ -105,17 +105,7 @@ set the environment variable `MYSQL_PASS` to your specific password when running
 
 You can now test your new admin password:
 
-	mysql -uadmin -p"mypass"
-
-
-Disabling .htaccess
---------------------
-
-`.htacess` is enabled by default. To disable `.htacess`, you can remove the following contents from `Dockerfile`
-
-	# config to enable .htaccess
-    ADD apache_default /etc/apache2/sites-available/000-default.conf
-    RUN a2enmod rewrite
+	mysql -u admin -p "mypass"
 
 
 **By https://github.com/mfjohansson - forked from http://www.tutum.co**
