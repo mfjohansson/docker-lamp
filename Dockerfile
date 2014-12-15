@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER Fernando Mayo <fernando@tutum.co>, Feng Honglin <hfeng@tutum.co>
+MAINTAINER Magnus Johansson <ao62x@notsharingmy.info>
 
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
@@ -25,6 +25,7 @@ RUN chmod 755 /*.sh
 # config to enable .htaccess
 ADD apache_default /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
+RUN a2enmod ssl
 
 # Configure /app folder with sample app
 RUN git clone https://github.com/fermayo/hello-world-lamp.git /app
@@ -47,5 +48,5 @@ ENV PHP_POST_MAX_SIZE 10M
 # Add volumes for MySQL 
 VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
 
-EXPOSE 80 3306
+EXPOSE 80 443 3306
 CMD ["/run.sh"]
