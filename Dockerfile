@@ -31,6 +31,7 @@ RUN a2enmod ssl
 
 # Enable SSL site
 ADD apache2_2.4.7-1ubuntu4.1/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
+ADD apache2_2.4.7-1ubuntu4.1/sites-available/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 ADD apache2_2.4.7-1ubuntu4.1/mods-available/ssl.conf /etc/apache2/mods-enabled/ssl.conf
 
 # Configure /app folder with sample app
