@@ -5,8 +5,8 @@ MAINTAINER Magnus Johansson <ao62x@notsharingmy.info>
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
   apt-get -y install \
-  supervisor git apache2=2.4.7 libapache2-mod-php5 \
-  mysql-server=5.5.40 \
+  supervisor git apache2 libapache2-mod-php5 \
+  mysql-server \
   php5-mysql pwgen php-apc php5-mcrypt
 
 # Add image configuration and scripts
