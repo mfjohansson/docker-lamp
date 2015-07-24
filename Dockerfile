@@ -27,7 +27,7 @@ RUN chmod 755 /*.sh
 
 # config to enable .htaccess
 RUN a2enmod rewrite
-RUN a2enmod ssl
+#RUN a2enmod ssl
 
 # Enable SSL site
 ADD apache2_2.4.7-1ubuntu4.1/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
